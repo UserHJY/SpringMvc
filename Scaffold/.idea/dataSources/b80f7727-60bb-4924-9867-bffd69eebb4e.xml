@@ -13,46 +13,289 @@
     <schema id="4" parent="1" name="information_schema"/>
     <schema id="5" parent="1" name="mysql"/>
     <schema id="6" parent="1" name="test"/>
-    <table id="7" parent="3" name="user"/>
-    <column id="8" parent="7" name="id">
+    <table id="7" parent="3" name="accessory"/>
+    <table id="8" parent="3" name="commodities"/>
+    <table id="9" parent="3" name="contract"/>
+    <table id="10" parent="3" name="middle_tab"/>
+    <table id="11" parent="3" name="retailer"/>
+    <table id="12" parent="3" name="user"/>
+    <column id="13" parent="7" name="accessoryid">
       <Position>1</Position>
-      <Comment>用户ID</Comment>
-      <DataType>INT(10)|4s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="9" parent="7" name="email">
-      <Position>2</Position>
-      <Comment>用户邮箱</Comment>
-      <DataType>VARCHAR(255)|12s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="10" parent="7" name="username">
-      <Position>3</Position>
-      <Comment>用户昵称</Comment>
-      <DataType>VARCHAR(255)|12s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="11" parent="7" name="role">
-      <Position>4</Position>
-      <Comment>用户身份</Comment>
-      <DataType>VARCHAR(255)|12s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="12" parent="7" name="mobile">
-      <Position>5</Position>
-      <Comment>手机号码</Comment>
+      <Comment>附属品id</Comment>
       <DataType>VARCHAR(50)|12s</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
     </column>
-    <index id="13" parent="7" name="PRIMARY">
+    <column id="14" parent="7" name="fruitid">
+      <Position>2</Position>
+      <Comment>商品id</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="7" name="name">
+      <Position>3</Position>
+      <Comment>附属品名称</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="7" name="price">
+      <Position>4</Position>
+      <Comment>价格</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="7" name="createtime">
+      <Position>5</Position>
+      <Comment>创建时间</Comment>
+      <DataType>DATETIME(19)|93s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="18" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>accessoryid</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="14" parent="7" name="PRIMARY">
+    <index id="19" parent="7" name="fruitid">
+      <ColNames>fruitid</ColNames>
+    </index>
+    <key id="20" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>accessoryid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="21" parent="7" name="accessory_ibfk_1">
+      <ColNames>fruitid</ColNames>
+      <RefSchemaName>db_spring</RefSchemaName>
+      <RefTableName>commodities</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>fruitid</RefColNames>
+    </foreign-key>
+    <column id="22" parent="8" name="fruitid">
+      <Position>1</Position>
+      <Comment>商品id</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="8" name="name">
+      <Position>2</Position>
+      <Comment>水果名称</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="8" name="price">
+      <Position>3</Position>
+      <Comment>价格</Comment>
+      <DataType>DOUBLE(10,2)|8s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="8" name="locality">
+      <Position>4</Position>
+      <Comment>产地</Comment>
+      <DataType>VARCHAR(100)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="8" name="createtime">
+      <Position>5</Position>
+      <Comment>录单时间</Comment>
+      <DataType>DATETIME(19)|93s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>fruitid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="28" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>fruitid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="29" parent="9" name="contractid">
+      <Position>1</Position>
+      <Comment>合同ID</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="9" name="barcode">
+      <Position>2</Position>
+      <Comment>合同号</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="9" name="type">
+      <Position>3</Position>
+      <Comment>运输类型</Comment>
+      <DataType>INT(10)|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="9" name="retailerid">
+      <Position>4</Position>
+      <Comment>零售商ID</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="9" name="createtime">
+      <Position>5</Position>
+      <Comment>创建时间</Comment>
+      <DataType>DATETIME(19)|93s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="34" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>contractid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="35" parent="9" name="retailerid">
+      <ColNames>retailerid</ColNames>
+    </index>
+    <key id="36" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>contractid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="37" parent="9" name="contract_ibfk_1">
+      <ColNames>retailerid</ColNames>
+      <RefSchemaName>db_spring</RefSchemaName>
+      <RefTableName>retailer</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>retailerid</RefColNames>
+    </foreign-key>
+    <column id="38" parent="10" name="middleid">
+      <Position>1</Position>
+      <Comment>中间表ID</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="10" name="contractid">
+      <Position>2</Position>
+      <Comment>合同id</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="10" name="fruitid">
+      <Position>3</Position>
+      <Comment>商品ID</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="10" name="number">
+      <Position>4</Position>
+      <Comment>商品数量</Comment>
+      <DataType>INT(10)|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="42" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>middleid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="43" parent="10" name="contractid">
+      <ColNames>contractid</ColNames>
+    </index>
+    <index id="44" parent="10" name="fruitid">
+      <ColNames>fruitid</ColNames>
+    </index>
+    <key id="45" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>middleid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="10" name="middle_tab_ibfk_1">
+      <ColNames>contractid</ColNames>
+      <RefSchemaName>db_spring</RefSchemaName>
+      <RefTableName>contract</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>contractid</RefColNames>
+    </foreign-key>
+    <foreign-key id="47" parent="10" name="middle_tab_ibfk_2">
+      <ColNames>fruitid</ColNames>
+      <RefSchemaName>db_spring</RefSchemaName>
+      <RefTableName>commodities</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>fruitid</RefColNames>
+    </foreign-key>
+    <column id="48" parent="11" name="retailerid">
+      <Position>1</Position>
+      <Comment>零售商ID</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="11" name="name">
+      <Position>2</Position>
+      <Comment>零售商姓名</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="11" name="telephone">
+      <Position>3</Position>
+      <Comment>零售商电话</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="11" name="address">
+      <Position>4</Position>
+      <Comment>零售商地址</Comment>
+      <DataType>VARCHAR(100)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="11" name="status">
+      <Position>5</Position>
+      <Comment>状态（0/1）</Comment>
+      <DataType>INT(10)|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="11" name="createtime">
+      <Position>6</Position>
+      <Comment>创建时间</Comment>
+      <DataType>DATETIME(19)|93s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="54" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>retailerid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="55" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>retailerid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="56" parent="12" name="userid">
+      <Position>1</Position>
+      <Comment>用户ID</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="12" name="password">
+      <Position>2</Position>
+      <Comment>密码</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="12" name="telephone">
+      <Position>3</Position>
+      <Comment>手机号码</Comment>
+      <DataType>VARCHAR(20)|12s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="59" parent="12" name="username">
+      <Position>4</Position>
+      <Comment>账号</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+    </column>
+    <column id="60" parent="12" name="name">
+      <Position>5</Position>
+      <Comment>姓名</Comment>
+      <DataType>VARCHAR(50)|12s</DataType>
+    </column>
+    <index id="61" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>userid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="62" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>userid</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

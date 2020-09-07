@@ -12,24 +12,24 @@ import org.springframework.stereotype.Component;
  */
 @Getter
 @Setter
-//@Component
 public class User {
 
-    private long id;
-    private String email;
-    private String mobile;
+    private String userid;
     private String username;
-    private String role;
+    private String password;
+    private String name;
+    private String telephone;
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
+                "userid='" + userid + '\'' +
                 ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", telephone='" + telephone + '\'' +
                 '}';
     }
+
 
 }
