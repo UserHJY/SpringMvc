@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+        <!-- 加载properties文件 -->
+    <context:property-placeholder location="classpath:config/jdbc.properties"/>
+    <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+            <!--<property name="location" value="classpath:config/jdbc.properties"/>-->
+        <!--</bean>-->
+        <!--扫描Service和Dao-->
+        <context:component-scan base-package="com.hjy.service"/>
+        <context:component-scan base-package="com.hjy.dao"/>
+        <!-- 配置数据源 -->
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+            <property name="driverClassName" value="${driver}"/>
+            <property name="url" value="${url}"/>
+            <property name="username" value="${username}"/>
+            <property name="password" value="${password}"/>
+        </bean>
+        <!-- mybatis和spring整合，不需要mybatis的配置映射文件 -->
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+            <!-- 扫描model包 -->
+            <property name="typeAliasesPackage" value="com.hjy.model"/>
+        </bean>
+        <!-- Mapper动态代理开发，扫描dao接口包-->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <!-- 注入sqlSessionFactory -->
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+            <!-- 给出需要扫描Dao接口包 -->
+            <property name="basePackage" value="com.hjy.dao"/>
+        </bean>
+        <!-- 事务管理 -->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <!--数据库连接池-->
+            <property name="dataSource" ref="dataSource"/>
+        </bean>
+
+</beans>
