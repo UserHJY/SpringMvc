@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * @author HJY
  * @date 2020/9/7 14:37
+ * @Discription 合同实体类
  */
 @Getter
 @Setter

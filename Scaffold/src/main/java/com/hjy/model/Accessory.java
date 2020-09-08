@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * @author HJY
  * @date 2020/9/7 14:30
- *
+ * @Discription 附属品实体类
  */
 @Getter
 @Setter

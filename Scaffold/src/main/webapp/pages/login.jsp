@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>登录</title>
-	<link href="${pageContext.request.contextPath}/css/regcss.css" type="text/css" rel="stylesheet"/>
+	<link href="${pageContext.request.contextPath}../css/regcss.css" type="text/css" rel="stylesheet"/>
 	<script type="text/javascript">
 	 function  validate(){   
           if(document.myform.username.value==""){   
